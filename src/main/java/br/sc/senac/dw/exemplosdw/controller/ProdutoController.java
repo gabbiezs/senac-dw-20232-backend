@@ -3,6 +3,7 @@ package br.sc.senac.dw.exemplosdw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.sc.senac.dw.exemplosdw.exception.CampoInvalidoException;
 import br.sc.senac.dw.exemplosdw.model.entidade.Produto;
+import br.sc.senac.dw.exemplosdw.model.seletor.ProdutoSeletor;
 import br.sc.senac.dw.exemplosdw.service.ProdutoService;
 
 @RestController
 @RequestMapping(path = "/api/produtos")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5500"}, maxAge = 3600)
 public class ProdutoController {
 	
 	@Autowired
@@ -28,13 +31,19 @@ public class ProdutoController {
 	//RETORNA TODOS
 	@GetMapping(path = "/todos")
 	public List<Produto> listarTodos() {
-		
-		return produtoService.listarTodos();
+		List<Produto> produtos = produtoService.listarTodos();
+		return produtos;
 		
 	}
+	
+	@PostMapping("/filtro")
+	public List<Produto> listarComSeletor(@RequestBody ProdutoSeletor seletor){
+		return produtoService.listarComSeletor(seletor);
+	}
+	
 	//METODO GET: UTILIZADO EM CONSULTAS
 	//RETORNA UM PRODUTOP ESPECIFICO, DADO O SEU ID
-	@GetMapping("/detalhe/{id}")
+	@GetMapping("/{id}")
 	public Produto pesquisarPorId (@PathVariable Integer id) {
 		return produtoService.consultarPorId(id.longValue());
 		
