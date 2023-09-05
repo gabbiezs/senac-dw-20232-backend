@@ -14,12 +14,12 @@ public class ProdutoSpecifications {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (seletor.getNome() != null) {
+            if (seletor.getNome() != null && !seletor.getNome().isEmpty()) {
                 predicates.add(cb.like(cb.lower(root.get("nome")), "%" 
                 		+ seletor.getNome().toLowerCase() + "%"));
             }
             
-            if (seletor.getFabricante() != null) {
+            if (seletor.getFabricante() != null && !seletor.getFabricante().isEmpty()) {
                 predicates.add(cb.like(root.join("fabricanteDoProduto").get("nome"), 
                 						"%" + seletor.getFabricante() + "%"));
             }
