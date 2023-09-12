@@ -39,6 +39,19 @@ public class ProdutoService {
 		return produtoRepository.save(produtoParaAtualizar);
 	}
 	
+//	public boolean excluirPorCpf(String cpf) {
+//		PessoaSeletor seletor = new PessoaSeletor();
+//		seletyor.setCpf(cpf);
+//		ArrayList<Pessoa> pessoas = this.listarComSeletor(seletor);
+//		boolean excluiu = false;
+//		
+//		if(pessoas != null && !pessoas.isEmpty()) {
+//			excluiu = this.excluir(pessoas.get(0).getId());
+//		}
+//		
+//		return excluiu;
+//	}
+	
 	public boolean excluir(Integer id) {
 		produtoRepository.deleteById(id.longValue());
 		return true;

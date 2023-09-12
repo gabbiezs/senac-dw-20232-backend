@@ -72,4 +72,15 @@ public class ProdutoController {
 		return produtoService.excluir(id);
 	}
 	
+	//GET - NA URL
+	//PUT - NO CORPO(BODY)
+	//POST - NO CORPO)BODY
+	//DELETE - NA URL
+	
+	@DeleteMapping("/deletar-por-cpf/{cpf}")
+	public boolean excluirPorCpf(@PathVariable Integer cpf) {
+		return produtoService.excluir(cpf);
+	}
+	
+	
 }

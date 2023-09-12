@@ -48,10 +48,9 @@ public class ProdutoSpecifications {
             	predicates.add(cb.lessThanOrEqualTo(root.get("valor"), seletor.getValorMaximo()));
             }
             
-            if(seletor.getCnpj() != null) {
+            if(seletor.getCnpj() != null && !seletor.getCnpj().isEmpty()) {
             	predicates.add(cb.equal(root.join("fabricanteDoProduto").get("cnpj"), seletor.getCnpj()));
             }
-            
             
             return cb.and(predicates.toArray(new Predicate[0]));
         };
