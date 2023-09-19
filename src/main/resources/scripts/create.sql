@@ -7,6 +7,9 @@ CREATE TABLE exemplos.fabricantes (
 	id int auto_increment NOT NULL,
 	nome varchar(400) NOT NULL,
 	cnpj varchar(14) NOT NULL,
+    cidade varchar(400) NOT NULL,
+	cep varchar(9) NOT NULL,
+    uf varchar(2) NOT NULL,
 	CONSTRAINT fabricantes_pk PRIMARY KEY (id)
 );
 
